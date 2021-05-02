@@ -1,0 +1,61 @@
+<html>
+<head>
+<title> Verification of QR Password </title> 
+</head>
+<script>
+function verifyPassword() {
+  var pw = document.getElementById("pswd").value;
+  var pw1 =document.getElementById("cfm_pswd").value;
+  //check empty password field
+  if(pw == "") {
+     document.getElementById("message").innerHTML = "**Fill the password please!";
+     return false;
+  }
+ 
+ //minimum password length validation
+  if(pw.length < 8) {
+     document.getElementById("message").innerHTML = "**Password length must be atleast 8 characters";
+     return false;
+  }
+
+//maximum length of password validation
+  if(pw.length > 16) {
+     document.getElementById("message").innerHTML = "**Password length must not exceed 15 characters";
+     return false;
+  } 
+  if(pw==pw1){
+     alert("Password is match and correct");
+  }
+  if(pw!=pw1){
+  	alert("password is mismatch try again");
+  }
+}
+</script>
+
+<body>
+<center>
+<h1 style="color:green">Enter your password</h1>
+<h3> QR code </h3>
+
+<form onsubmit ="return verifyPassword()" method="POST">
+{% csrf_token %}
+<!-- Enter Password --> 
+Enter email:<input type="text" id="email" name="email" value=""><br> 
+<br><br>
+Enter Old  Password:<input type = "password" id = "pswd1" name="old_pswd" value = ""> <br>
+<br><br>
+Enter Password:<input type = "password" id = "pswd" name="pswd" value = ""> <br> 
+<br><br>
+confirm Password:<input type="password" id="cfm_pswd" name="pswd3" value=""><br>
+<span id = "message" style="color:red"> </span> <br> 
+
+<!-- Click to verify valid password -->
+<input type = "submit" value = "Submit">
+
+<!-- Click to reset fields -->
+<button type = "reset" value = "Reset" >Reset</button>
+</form>  
+<p>{{m}}</p>
+</center>  
+</body>
+</html>

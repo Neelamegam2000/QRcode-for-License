@@ -1,0 +1,31 @@
+<html>
+  <head>
+    <style>
+      table,tr{
+        border:4px solid black;  
+        background-color: chartreuse;
+        padding-top: 50px;
+        padding-right: 50px;
+        padding-bottom: 50px;
+        padding-left: 50px;
+      }
+    </style> 
+  </head>  
+<body>
+<center> 
+  <h1>UPLOAD</h1>
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %} 
+    <table>
+      {{ form.as_table }}
+      <tr>
+      <td>&nbsp;</td>
+      </tr>
+   </table><br>
+    <button type="submit">Upload</button> 
+  </form>
+  <p><a href="{% url 'home' %}">Return to home</a></p>   
+  <p>{{msg}}</p>
+</center> 
+</body>
+</html>

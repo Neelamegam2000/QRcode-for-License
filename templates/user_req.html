@@ -1,0 +1,53 @@
+{% load static %}
+{% block content %} 
+<html>
+    <head>
+        <style>
+            table,th,td{ 
+                border: 1px; 
+                border-collapse: collapse;
+            } 
+        </style> 
+        <script> 
+           function scan()
+           {
+               document.getElementById("scan").style.display = "block"; 
+                
+               
+           }
+            
+            </script>
+    </head> 
+<center style="padding-right:10px;">
+<form action="" method="POST" enctype="multipart/form-data"> 
+    {% csrf_token %}  
+    <h1>SCANNER</h1>
+    QRCODE SCAN:<input type="text" name="id1" value={{id}}>
+    <button type="submit" name="scanner">scan</button><br>
+    <br>
+    PASSWORD:<input type="password" name="password1" placeholder="enter ur password" >
+    <input type="submit"  name="proceed" value="proceed">
+    <br><br>
+    <input type="button" onclick="scan()" value="Show The Document">
+</form>   
+<body>  
+<div id="scan" style="display:none;"> 
+<h1>WORKER DETAILS YOU SEARCH</h1> 
+        <table border: 1px solid border-collapse: collapse>
+            <tr>
+                <th>DESCRIPTION</th>
+                <th>DOCUMENT</th>
+            </tr>
+            {% for item in userdata %}
+            <tr> 
+                <td>{{ item.description}}</td> 
+                <type=item.document.name name="myfile">
+                <td><a href="{{ item.document.url }}">{{ item.document.name }}</a></td>
+            </tr>
+            {% endfor %}
+        </table>   
+</div>
+</center>
+</body> 
+</html>
+{% endblock %}

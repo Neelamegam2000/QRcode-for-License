@@ -1,0 +1,16 @@
+<html>
+    <head>   
+    </head> 
+<body>  
+    <center>
+    <form action="" method="POST"> 
+    {% csrf_token %}
+        <h1>QRCODE RESEND</h1> 
+        ENTER EMAIL:<input type='email' name='email'> <br><br> 
+        PASSWORD:<input type="password" name="password1"><br><br>
+        <input type="submit" value="submit"><br><br>
+        <p>{{msg}}</p>
+    </center> 
+    </form>
+</body>
+</html>
