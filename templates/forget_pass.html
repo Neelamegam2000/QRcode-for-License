@@ -1,31 +1,99 @@
-<html>
-    <head> 
-        <style>
-            .button { 
-              border: none;
-              color: white; 
-              width: 200px;
-              padding: 15px 32px;
-              text-align: center;
-              text-decoration: none;
-              display: inline-block;
-              font-size: 16px;
-              cursor: pointer; 
-              margin:4px 2px;
+<html> 
+<head>
+  <script>
+    function int1() {
+        var w = document.getElementById("email").value;
+        //check empty password field
+        if(w == "") {
+          document.getElementById("wor").innerHTML = "**Fill the email please!";
+          return false;
+              }
+      }
+ 
+  </script>
+  <style>
+   @import url('https://fonts.googleapis.com/css?family=Montserrat:400,800');
+
+      * {
+        box-sizing: border-box;
+        }
+      body {
+        background: #f6f5f7;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        font-family: 'Alas', sans-serif;
+        height: 100vh;
+        margin: -20px 0 50px;
+        }
+
+      h2 {
+        font-weight: bold;
+        margin: 0;
+        color:white;
+        background-color: black;
+        }
+
+      h1 {
+        text-align: center;
+        }
+      a {
+        color: blue;
+        font-size: 14px;
+        text-align: right;
+        }
+
+      button {
+        border-radius: 20px;
+        border: 1px solid #FF4B2B;
+        background-color: green;
+        color: #FFFFFF;
+        font-size: 12px;
+        font-weight: bold;
+        padding: 12px 45px;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        transition: transform 80ms ease-in;
+          }
+
+      button:active {
+        transform: scale(0.95);
             }
-            
-            .button1 {background-color: #4CAF50;} 
-        </style>  
-    </head> 
-<body>  
-    <center>
-    <form action="" method="POST"> 
-    {% csrf_token %}
-        <h1>FORGET PASSWORD</h1> 
-        ENTER EMAIL:<input type='email' name='email'> <br><br>
-        <input type="submit" value="submit" 
-        <p>{{msg}}</p>
-    </center> 
+      input {
+        background-color: #eee;
+        padding: 12px 15px;
+        margin: 8px 0;
+        width: 80%;
+
+        }
+
+      .container {
+        background-color: #FF416C;
+        border-radius: 10px;
+          box-shadow: 0 14px 28px rgba(0,0,0,0.25), 
+      0 10px 10px rgba(0,0,0,0.22);
+        position: relative;
+        width: 300px;
+        max-width: 100%;
+        min-height: 480px;
+          }
+      
+}
+  </style>
+</head>
+<body> 
+  <center>
+    <div class="container" id="container">
+    <form onsubmit="return int1()" action="" method="POST">
+      {% csrf_token %}
+      <center>
+      <h2>FORGET PASSWORD</h2>
+      <input type="email" name="email" id="email" placeholder="Email" /><br>
+      <span id="wor" style="color:black" ></span><br>
+      <button type="submit" name="submit" id="submit">Submit</button>
+      </center>
     </form>
+    </div>
 </body>
 </html>

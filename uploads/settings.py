@@ -47,7 +47,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
+    'widget_tweaks',
+    'Crypto',
     'core'
 ]
 
@@ -139,5 +140,14 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_USE_TLS = True
 EMAIL_PORT = 587
-EMAIL_HOST_USER = 'user_email_id'
-EMAIL_HOST_PASSWORD = 'user_password'
+EMAIL_HOST_USER = 'vneelamegam2000@gmail.com'
+EMAIL_HOST_PASSWORD = '9626509384'
+PAYTM_MERCHANT_ID = 'inopIk33106736898589'
+
+PAYTM_SECRET_KEY = 'LtXg!9fX7qoiyRCZ'
+
+PAYTM_WEBSITE = 'WEBSTAGING'
+
+PAYTM_CHANNEL_ID = 'WEB'
+
+PAYTM_INDUSTRY_TYPE_ID = 'Retail'

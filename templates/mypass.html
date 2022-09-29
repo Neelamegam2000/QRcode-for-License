@@ -1,7 +1,79 @@
 <html>
 <head>
 <title> Verification of QR Password </title> 
-</head>
+<style>
+            @import url('https://fonts.googleapis.com/css?family=Montserrat:400,800');
+
+            * {
+                box-sizing: border-box;
+                }
+            body {
+                background: linear-gradient(45deg,  rgba(66, 183, 245,0.8) 0%,rgba(66, 245, 189,0.4) 100%);;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+                font-family: 'Alas', sans-serif;
+                height: 100vh;
+                margin: -20px 0 50px;
+                }
+
+            h1 {
+                font-weight: bold;
+                margin: 0; 
+                }
+
+            h2 {
+                text-align: center;
+                }
+            a {
+                color: blue;
+                font-size: 14px;
+                text-align: right;
+                }
+
+            button {
+                border-radius: 20px;
+                border: 1px solid #FF4B2B;
+                background-color: #FF4B2B;
+                color: #FFFFFF;
+                font-size: 12px;
+                font-weight: bold;
+                padding: 12px 45px;
+                letter-spacing: 1px;
+                text-transform: uppercase;
+                transition: transform 80ms ease-in;
+                    }
+
+            button:active {
+                transform: scale(0.95);
+                        }
+            input {
+                background-color: #eee;
+                padding: 12px 15px;
+                margin: 8px 0;
+                width: 80%;
+
+                }
+            .button1{background-color: purple;
+                padding:5px 5px;
+                border-radius:0px;
+            }
+            .button2{
+                background-color: green;
+            }
+
+            .container {
+                background-color: #fff;
+                border-radius: 10px;
+                box-shadow: 0 14px 28px rgba(0,0,0,0.25), 
+            0 10px 10px rgba(0,0,0,0.22);
+                position: relative;
+                width: 500px;
+                max-width: 100%;
+                min-height: 480px;
+                    }
+                  </style>
 <script>
 function verifyPassword() {
   var pw = document.getElementById("pswd").value;
@@ -31,31 +103,29 @@ function verifyPassword() {
   }
 }
 </script>
-
+</head>
 <body>
+  <div class="container">
 <center>
-<h1 style="color:green">Enter your password</h1>
-<h3> QR code </h3>
+
+<h3> Change Password</h3>
 
 <form onsubmit ="return verifyPassword()" method="POST">
 {% csrf_token %}
 <!-- Enter Password --> 
-Enter email:<input type="text" id="email" name="email" value=""><br> 
-<br><br>
-Enter Old  Password:<input type = "password" id = "pswd1" name="old_pswd" value = ""> <br>
-<br><br>
-Enter Password:<input type = "password" id = "pswd" name="pswd" value = ""> <br> 
-<br><br>
-confirm Password:<input type="password" id="cfm_pswd" name="pswd3" value=""><br>
+<input type="text" id="email" name="email" placeholder="Email" value=""><br> 
+<input type = "password" id = "pswd1" name="old_pswd" placeholder="Old Password" value = ""> <br>
+<input type = "password" id = "pswd" name="pswd" placeholder="New Password" value = ""> <br> 
+<input type="password" id="cfm_pswd" name="pswd3" placeholder="confirm password" value=""><br>
 <span id = "message" style="color:red"> </span> <br> 
 
 <!-- Click to verify valid password -->
-<input type = "submit" value = "Submit">
+<button class="button2" type = "submit">Submit</button>
 
 <!-- Click to reset fields -->
-<button type = "reset" value = "Reset" >Reset</button>
 </form>  
 <p>{{m}}</p>
-</center>  
+</center> 
+</div> 
 </body>
 </html>

@@ -2,11 +2,119 @@
 {% block content %} 
 <html>
     <head>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <style>
+            @import url('https://fonts.googleapis.com/css?family=Montserrat:400,800');
+
+            * {
+                box-sizing: border-box;
+                }
+            body {
+                background: linear-gradient(45deg,  rgba(66, 183, 245,0.8) 0%,rgba(66, 245, 189,0.4) 100%);;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+                font-family: 'Alas', sans-serif;
+                height: 100vh;
+                margin: -20px 0 50px;
+                }
+
+            h1 {
+                font-weight: bold;
+                margin: 0; 
+                }
+
+            h2 {
+                text-align: center;
+                }
+            a {
+                color: blue;
+                font-size: 14px;
+                text-align: right;
+                }
+
+            button {
+                border: 1px solid #FF4B2B;
+                background-color: #FF4B2B;
+                color: #FFFFFF;
+                font-size: 12px;
+                font-weight: bold;
+                padding: 12px 45px;
+                letter-spacing: 1px;
+                text-transform: uppercase;
+                transition: transform 80ms ease-in;
+                cursor: pointer;
+                    }
+
+            button:active {
+                transform: scale(0.95);
+                        }
+            input {
+                background-color: #eee;
+                padding: 12px 15px;
+                margin: 8px 0;
+                width: 80%;
+
+                }
+            .button1{background-color: purple;
+                padding:5px 5px;
+                border-radius:0px;
+            }
+            .button2{
+                background-color: green;
+                padding:10px 10px;
+                width:100px;
+            }
+
+            .container {
+                background-color: #fff;
+                border-radius: 10px;
+                box-shadow: 0 14px 28px rgba(0,0,0,0.25), 
+            0 10px 10px rgba(0,0,0,0.22);
+                position: relative;
+                width: 768px;
+                max-width: 100%;
+                min-height: 480px;
+                    }
+            .form-container {
+                position: absolute;
+                top: 0;
+                height: 100%;
+                transition: all 0.6s ease-in-out;
+                    }
+            .container1 {
+                left: 0;
+                width: 50%;
+                z-index: 1;
+                    }
+
+            
+            .container2 {
+                background-color: #FF416C;
+                left: 50%;
+                width: 50%;
+                z-index: 2;
+                }
             table,th,td{ 
                 border: 1px; 
                 border-collapse: collapse;
             } 
+            th{
+      border:3px solid black;
+      padding: 10px;
+      margin: 10px;
+   }
+   tr{
+    border: 2px solid black;
+    padding: 10px;
+  margin: 10px;
+   }
+   td{
+    border: 2px solid black;
+    padding:5px;
+    margin:5px;
+   }
         </style> 
         <script> 
            function scan()
@@ -17,23 +125,27 @@
            }
             
             </script>
-    </head> 
-<center style="padding-right:10px;">
+    </head>
+<body> 
+<div class="container" id="container">
+    <center>
+    <div class="form-container container1">
 <form action="" method="POST" enctype="multipart/form-data"> 
     {% csrf_token %}  
-    <h1>SCANNER</h1>
-    QRCODE SCAN:<input type="text" name="id1" value={{id}}>
-    <button type="submit" name="scanner">scan</button><br>
+    <h1 style="background-color: #FF416C">SCANNER</h1>
+    <input type="text" name="id1" placeholder="Qrcode" value={{id}} >
+    <button type="submit" name="scanner" class="button1"><i class="fa fa-qrcode" style="font-size:24px"></i></button><br>
     <br>
-    PASSWORD:<input type="password" name="password1" placeholder="enter ur password" >
-    <input type="submit"  name="proceed" value="proceed">
-    <br><br>
-    <input type="button" onclick="scan()" value="Show The Document">
-</form>   
-<body>  
-<div id="scan" style="display:none;"> 
-<h1>WORKER DETAILS YOU SEARCH</h1> 
-        <table border: 1px solid border-collapse: collapse>
+    <input type="password" name="password1" placeholder="Password" >
+    <button type="submit" name="proceed" class="button2">proceed</button><br><br>
+    <button type="button" onclick="scan()" class="button2">show Document</button>
+</form>  
+</div>  
+<div class="form-container container2">
+ 
+<h1 style="background-color:white ">DETAILS</h1> <br><br>
+<div id="scan" style="display:none;">
+        <table style="background-color: white">
             <tr>
                 <th>DESCRIPTION</th>
                 <th>DOCUMENT</th>
@@ -41,13 +153,18 @@
             {% for item in userdata %}
             <tr> 
                 <td>{{ item.description}}</td> 
-                <type=item.document.name name="myfile">
+                <type=item.document.name name="myfile"></type=item.document.name>
                 <td><a href="{{ item.document.url }}">{{ item.document.name }}</a></td>
             </tr>
+            <br><img src="\media\{{item.document}}" width="200" height="200"/><br><br>
             {% endfor %}
         </table>   
+
+
+</div>
 </div>
 </center>
+</div>
 </body> 
 </html>
 {% endblock %}
